@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rapidetl"
+version = "0.1.0"
+description = "Blazing-fast low-code ETL pipelines using JSON"
+authors = [
+    {name = "Dinesh Kumar Mamidela", email = "mamideladinesh@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+keywords = ["etl", "data-pipelines", "low-code", "json"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+dependencies = [
+    "pydantic>=2.0",  # For schema validation
+    "orjson>=3.0.0",  # Fast JSON parsing
+    "polars>=0.19.0", # High-performance DataFrames
+    "requests>=2.28.0", # For API connectors
+    "google-cloud-bigquery>=3.0.0", # BigQuery connector
+    "typer>=0.9.0",   # For CLI support
+    "APScheduler>=3.0.0" # For scheduling
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",  # For testing
+    "black>=23.0.0",  # Code formatting
+    "mypy>=1.0.0",    # Static type checking
+    "flake8>=5.0.0",  # Linting
+    "tox>=4.0.0"      # Multi-environment testing
+]
+
+[project.scripts]
+rapidetl = "rapidetl.cli:app"

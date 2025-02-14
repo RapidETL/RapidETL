@@ -1,0 +1,29 @@
+{
+    "name": "user_pipeline",
+    "sources": [
+      {
+        "type": "csv",
+        "config": {
+          "path": "data/input.csv"
+        }
+      }
+    ],
+    "transformations": [
+      {
+        "type": "rename_columns",
+        "config": {
+          "columns": {
+            "name": "Name"
+          }
+        }
+      }
+    ],
+    "sinks": [
+      {
+        "type": "csv",
+        "config": {
+          "path": "data/output/"
+        }
+      }
+    ]
+  }

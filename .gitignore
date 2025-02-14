@@ -1,0 +1,37 @@
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Python package metadata
+*.egg-info/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build and distribution files
+dist/
+build/
+
+# Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and databases
+*.log
+*.sqlite3
+
+# Environment variables
+.env
+.env.local
+
+# Testing and coverage
+.coverage
+htmlcov/
+.pytest_cache/
