@@ -1,4 +1,6 @@
 from pathlib import Path
+from typing import Dict, Any
+import polars as pl
 from ..dependencies.polars_utils import read_csv, write_csv
 
 class CSVConnector:
@@ -28,8 +30,9 @@ class CSVConnector:
         
         # Ensure the output dictonary exists 
         output_dir = Path(path).parent
+        print(f"output_dir - {output_dir}")
         output_dir.mkdir(parents=True, exist_ok=True)
 
         # Write Dataframe to CSV
         for name, df in data.items():
-            write_csv(df, Path(path) / f"{name}.csv")
+            write_csv(df, Path(path))

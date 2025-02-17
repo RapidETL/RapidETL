@@ -1,4 +1,5 @@
 from pydantic import BaseModel, ValidationError
+from typing import Dict, Any
 
 def validate_config(config: Dict[str, Any], schema: BaseModel) -> BaseModel:
     """

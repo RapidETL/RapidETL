@@ -1,0 +1,19 @@
+{
+    "name": "csv_mover",
+    "source": [
+      {
+        "type": "csv",
+        "config": {
+          "path": "data/input.csv"
+        }
+      }
+    ],
+    "sink": [
+      {
+        "type": "csv",
+        "config": {
+          "path": "data/output/output.csv"
+        }
+      }
+    ]
+}
