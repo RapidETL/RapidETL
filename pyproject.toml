@@ -47,5 +47,5 @@ dev = [
 rapidetl = "rapidetl.cli:app"
 
 [tool.setuptools]
-package-dir = {"" = "src"}
 packages = ["rapidetl"]
+package-dir = {"" = "."}
