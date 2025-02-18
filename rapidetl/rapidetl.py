@@ -23,38 +23,43 @@ class PipelineConfig(BaseModel):
     source: List[SourceConfig]
     sink: List[SourceSink]
 
-def run_pipeline(config_path: str) -> None:
+def run_pipeline(config_path: str, progress_callback=None) -> None:
     """
     Load JSON config, Validate and execute the pipeline
     """
     
     # Load JSON configuration
     config = load_json(config_path)
-
-    print(f"Successfully read config - {config}")
+    if progress_callback:
+        progress_callback("Loading configuration", 0.2)
 
     # Validate JSON structure using pydantic
     vconfig = validate_config(config, PipelineConfig)
-
-    print(f"Validated config - {vconfig}")
+    if progress_callback:
+        progress_callback("Validating configuration", 0.3)
 
     # Load Data from sources
     data = {}
-    for source in vconfig.source:
+    for i, source in enumerate(vconfig.source):
         if source.type == "csv":
+            if progress_callback:
+                progress_callback(f"Loading source {i+1}/{len(vconfig.source)}", 0.4 + (i * 0.2))
             connector = CSVConnector()
             data.update(connector.load(source.config))
         else:
             raise ValueError(f"Unsupported source type: {source.type}")
     
     # Write Data to Sink
-    for sink in vconfig.sink:
+    for i, sink in enumerate(vconfig.sink):
         if sink.type == "csv":
+            if progress_callback:
+                progress_callback(f"Writing to sink {i+1}/{len(vconfig.sink)}", 0.7 + (i * 0.2))
             connector = CSVConnector()
             connector.write(data, sink.config)
         else:
             raise ValueError(f"Unsupported sink type: {sink.type}")
-        
-    print("Pipeline executed successfully")
+    
+    if progress_callback:
+        progress_callback("Pipeline complete", 1.0)
 
 

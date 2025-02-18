@@ -1,29 +1,23 @@
 {
-    "name": "user_pipeline",
-    "sources": [
-      {
-        "type": "csv",
-        "config": {
-          "path": "data/input.csv"
+    "name": "sample_transform",
+    "source": [
+        {
+            "type": "csv",
+            "config": {
+                "path": "data/input.csv",
+                "delimiter": ",",
+                "has_header": true
+            }
         }
-      }
     ],
-    "transformations": [
-      {
-        "type": "rename_columns",
-        "config": {
-          "columns": {
-            "name": "Name"
-          }
+    "sink": [
+        {
+            "type": "csv",
+            "config": {
+                "path": "data/output/transformed.csv",
+                "delimiter": ",",
+                "include_header": true
+            }
         }
-      }
-    ],
-    "sinks": [
-      {
-        "type": "csv",
-        "config": {
-          "path": "data/output/"
-        }
-      }
     ]
-  }
+}
