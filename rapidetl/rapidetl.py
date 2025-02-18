@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict, Any
+from typing import Dict, Any, List
 from .dependencies import *
 from pydantic import BaseModel, ValidationError
 from .dependencies.json_utils import load_json
@@ -20,8 +20,8 @@ class SourceSink(BaseModel):
 
 class PipelineConfig(BaseModel):
     name: str
-    source: list[SourceConfig]
-    sink: list[SourceSink]
+    source: List[SourceConfig]
+    sink: List[SourceSink]
 
 def run_pipeline(config_path: str) -> None:
     """
